@@ -63,12 +63,12 @@ fi
 
 echo "Ampliando partición: device='${DEVICE}' part_num='${PART_NUM}' partition='${PARTITION_PATH}' lv='${LV_PATH}'"
 
-growpart "${DEVICE}" "${PART_NUM}"
+growpart "${DEVICE}" "${PART_NUM}" || true
 echo "Partición ampliada." 
 lsblk
 
 echo "Redimensionando el PV: ${PARTITION_PATH}"
-pvresize "${PARTITION_PATH}"
+pvresize "${PARTITION_PATH}" || true
 echo "PV redimensionado."
 
 echo "Ampliando el LV: ${LV_PATH}"
